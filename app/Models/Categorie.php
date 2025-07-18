@@ -9,6 +9,10 @@ class Categorie extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['nom'];
+    public $timestamps = false;
+
+
      public function plats() {
         return $this->hasMany(Plat::class);
     }

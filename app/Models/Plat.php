@@ -2,23 +2,39 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Plat extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'nom',
+        'origine',
+        'tps_cuisson',
+        'prix',
+        'image',
+        'menu_id',
+        'categorie_id'
+    ];
 
-    public function menu() {
+    public $timestamps = false;
+
+    public function menu()
+    {
         return $this->belongsTo(Menu::class);
     }
 
-    public function categorie() {
+    public function categorie()
+    {
         return $this->belongsTo(Categorie::class);
     }
-
-     public function ingredients() {
-        return $this->belongsToMany(Ingredient::class);
+    public function commandes()
+    {
+        return $this->hasMany(Commande::class);
     }
-}
+    public function ingredients()
+    {
+        return $this->belongsToMany(Ingredient::class, 'ingredient_plat', 'plat_id', 'ingredient_id');
+    }
 
+
+}

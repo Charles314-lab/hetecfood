@@ -16,4 +16,7 @@ class Menu extends Model
         public function plats() {
         return $this->hasMany(Plat::class);
     }
+    protected $fillable = ['nom'];
+    public $timestamps = false;
+
 }

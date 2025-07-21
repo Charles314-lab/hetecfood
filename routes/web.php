@@ -4,15 +4,45 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomesController;
 use App\Http\Controllers\CommandeController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\PlatController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\LivreurController;
+use App\Http\Controllers\ReservationController;
+
 
 
 Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth', 'verified'])->name('admin.dashboard');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    // ✅ Route pour gérer les menus
+    Route::resource('menus', MenuController::class);
+
+    // ✅ Route pour gérer les plats
+    Route::resource('plats', PlatController::class);
+
+    // ✅ Route pour gérer les clients
+    Route::resource('clients', ClientController::class);
+
+    // ✅ Route pour gérer les commandes
+    Route::resource('commandes', CommandeController::class);
+
+    // ✅ Route pour gérer les livreurs
+    Route::resource('livreurs', LivreurController::class);
+
+    // ✅ Route pour gérer les réservations
+    Route::resource('reservations', ReservationController::class);
+
+
+
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -28,6 +58,6 @@ Route::get('/index', function () {
 });
 
 Route::get('/',[HomesController::class, 'index']);
-Route::get('/plats',[HomesController::class, 'plats']);
 Route::post('/commande', [CommandeController::class, 'store'])->name('commande.submit');
+
 

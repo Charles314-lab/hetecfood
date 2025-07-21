@@ -9,6 +9,8 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PlatController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\LivreurController;
+use App\Http\Controllers\ReservationController;
+
 
 
 Route::get('/welcome', function () {
@@ -33,6 +35,11 @@ Route::middleware(['auth'])->group(function () {
 
     // ✅ Route pour gérer les livreurs
     Route::resource('livreurs', LivreurController::class);
+
+    // ✅ Route pour gérer les réservations
+    Route::resource('reservations', ReservationController::class);
+
+
 
 });
 

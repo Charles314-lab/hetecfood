@@ -1,0 +1,36 @@
+[33mcommit d20a24ec3ecc8521889353b3e39bf05fce929125[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mgestion-dashboard[m[33m)[m
+Merge: 27847d6 4b4a69a
+Author: Charles MBANDI <mbandicharles38@gmail.com>
+Date:   Mon Jul 21 23:32:41 2025 +0000
+
+    Merge pull request #1 from Charles314-lab/gestion-dashboard
+
+[33mcommit 4b4a69ab9237981c8206083177fad9eeee190b66[m[33m ([m[1;31morigin/gestion-dashboard[m[33m)[m
+Author: Charles Mbandi <mbandicharles38@gmail.com>
+Date:   Mon Jul 21 23:17:41 2025 +0000
+
+    🔧 Ajout de la sidebar AdminLTE avec navigation partielle vers les entités du dashboard
+
+[33mcommit b732728e40e9d74e64e4315a1f3c3971a01b0df9[m
+Author: Charles Mbandi <mbandicharles38@gmail.com>
+Date:   Fri Jul 18 00:13:13 2025 +0000
+
+    Avancement important : dashboard AdminLTE + auth admin OK + création de certains modules
+
+[33mcommit 392ee6e07a8f5f8371610c4e8d826a501cb89f4a[m
+Author: Charles Mbandi <mbandicharles38@gmail.com>
+Date:   Thu Jul 17 20:20:08 2025 +0000
+
+    Ajout du dashboard AdminLTE, routes, vues et intégration des scripts
+
+[33mcommit 27847d68883f9650f32dffcb30a21121f7aa63ef[m[33m ([m[1;31mupstream/Implémentation-du-dashboard-admin[m[33m)[m
+Author: Mamounberthe <mamounberthe@gmail.com>
+Date:   Tue Jul 15 11:07:03 2025 -1100
+
+    Titre change
+
+[33mcommit 2960277627dcc96edec5cb35939b129ced74487c[m
+Author: Mamounberthe <mamounberthe@gmail.com>
+Date:   Tue Jul 15 10:59:33 2025 -1100
+
+    first commit

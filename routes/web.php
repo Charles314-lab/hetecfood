@@ -9,6 +9,8 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PlatController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\LivreurController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ReservationController;
 
 
 Route::get('/welcome', function () {
@@ -52,5 +54,6 @@ Route::get('/index', function () {
 
 Route::get('/',[HomesController::class, 'index']);
 Route::post('/commande', [CommandeController::class, 'store'])->name('commande.submit');
-
-
+Route::post('/commande-publique', [CommandeController::class, 'storePublic'])->name('commandes.storePublic');
+Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
+Route::post('/contact', [MessageController::class, 'store'])->name('contact.submit');

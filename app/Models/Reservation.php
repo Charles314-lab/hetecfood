@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Reservation extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'nom',
         'email',
@@ -14,7 +17,8 @@ class Reservation extends Model
         'reservation_date',
         'reservation_time',
         'message',
+        'vu'
     ];
 
-    public $timestamps = false; // Set to true if you want to use timestamps
+    public $timestamps = false;
 }

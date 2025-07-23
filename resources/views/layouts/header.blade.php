@@ -34,7 +34,6 @@
         <li><a href="#chefs">Chefs</a></li>
         <li><a href="#gallery">Gallery</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="{{ route('login') }}">Admin</a></li>
       </ul>
       <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
     </nav>

@@ -10,46 +10,44 @@
 
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="hero section dark-background">
-      <img src="assets/img/hero.webp" alt="" data-aos="fade-in">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 d-flex flex-column align-items-center align-items-lg-start">
-            <h2 data-aos="fade-up" data-aos-delay="100">Welcome to <span>Montego's</span></h2>
-            <p data-aos="fade-up" data-aos-delay="200">Your premier destination for an unforgettable dining experience.
-            </p>
-            <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
-              <a href="#menu" class="cta-btn">Our Menu</a>
-              <a href="#book-a-table" class="cta-btn">Book a Table</a>
-            </div>
-          </div>
-          <div class="col-lg-4 d-flex align-items-center justify-content-center mt-5 mt-lg-0">
-            <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox pulsating-play-btn"></a>
-          </div>
+  <img src="assets/img/hero.webp" alt="Restaurant malien" data-aos="fade-in">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 d-flex flex-column align-items-center align-items-lg-start">
+        <h2 data-aos="fade-up" data-aos-delay="100">Bienvenue chez <span>Montego's</span></h2>
+        <p data-aos="fade-up" data-aos-delay="200">Votre destination culinaire pour une expérience malienne authentique.</p>
+        <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
+          <a href="#menu" class="cta-btn">Notre Menu</a>
+          <a href="#book-a-table" class="cta-btn">Réserver</a>
         </div>
       </div>
-    </section>
+      <div class="col-lg-4 d-flex align-items-center justify-content-center mt-5 mt-lg-0">
+        <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox pulsating-play-btn"></a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- ======= About Section ======= -->
-    <section id="about" class="about section">
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row gy-4">
-          <div class="col-lg-6 order-1 order-lg-2">
-            <img src="assets/img/about.webp" class="img-fluid about-img" alt="">
-          </div>
-          <div class="col-lg-6 order-2 order-lg-1 content">
-            <h3><?php echo "Our Culinary Philosophy" ?></h3>
-            <p class="fst-italic">Description of our values and culinary philosophy.</p>
-            <ul>
-              <li><i class="bi bi-check2-all"></i> <span>Fresh and high-quality ingredients</span></li>
-              <li><i class="bi bi-check2-all"></i> <span>Recipes combining tradition and creativity</span></li>
-              <li><i class="bi bi-check2-all"></i> <span>Warm welcome and elegant setting</span></li>
-            </ul>
-            <p>Golden Spoon is where every dish tells a story.</p>
-          </div>
-        </div>
+  <section id="about" class="about section">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row gy-4">
+      <div class="col-lg-6 order-1 order-lg-2">
+        <img src="assets/img/about.webp" class="img-fluid about-img" alt="Cuisine malienne">
       </div>
-    </section>
-
+      <div class="col-lg-6 order-2 order-lg-1 content">
+        <h3>Notre Philosophie Culinaire</h3>
+        <p class="fst-italic">Savourez l'authenticité des saveurs maliennes.</p>
+        <ul>
+          <li><i class="bi bi-check2-all"></i> <span>Ingrédients frais et locaux</span></li>
+          <li><i class="bi bi-check2-all"></i> <span>Recettes traditionnelles revisitées</span></li>
+          <li><i class="bi bi-check2-all"></i> <span>Accueil chaleureux à la malienne</span></li>
+        </ul>
+        <p>Montego's, là où chaque plat raconte l'histoire du Mali.</p>
+      </div>
+    </div>
+  </div>
+</section>
     <!-- ======= Why Us Section ======= -->
     <section id="why-us" class="why-us section">
       <div class="container section-title" data-aos="fade-up">
@@ -156,8 +154,8 @@
           <!-- Colonne droite : formulaire -->
           <div class="col-md-7">
             <h5 class="mb-4">Informations de livraison</h5>
-            <form class="commande-form" method="post" action="{{ route('commande.submit') }}">
-              @csrf
+           <form class="commande-form" method="post" action="{{ route('commandes.storePublic') }}" id="commandeForm{{ $plat->id }}">
+                @csrf
               <input type="hidden" name="plat_id" value="{{ $plat->id }}">
 
               <div class="row g-3">
@@ -266,7 +264,7 @@
               </li>
             </ul>
           </div>
-          <div class="col-lg-9 mt-4 mt-lg-0">
+            <div class="col-lg-9 mt-4 mt-lg-0">
             <div class="tab-content">
               <div class="tab-pane active show" id="specials-tab-1">
                 <div class="row">
@@ -281,7 +279,7 @@
                 </div>
               </div>
 
-              <div class="tab-pane" id="specials-tab-2">
+                <div class="tab-pane" id="specials-tab-2">
                 <div class="row">
                   <div class="col-lg-8 details order-2 order-lg-1">
                     <h3>Tropical Fruit Salad</h3>
@@ -364,31 +362,29 @@
 
           <div class="swiper-wrapper">
 
-            <!-- Birthday Parties -->
-            <div class="swiper-slide">
-              <div class="row gy-4 event-item">
-                <div class="col-lg-6">
-                  <img src="assets/img/events-slider/events-slider-1.jpg" class="img-fluid" alt="">
+
+                        <!-- Dans la section Events -->
+                <div class="swiper-slide">
+                <div class="row gy-4 event-item">
+                    <div class="col-lg-6">
+                    <img src="assets/img/events-slider/mariage-malien.jpeg" class="img-fluid" alt="Mariage malien">
+                    </div>
+                    <div class="col-lg-6 pt-4 pt-lg-0 content">
+                    <h3>Cérémonies de Mariage</h3>
+                    <div class="price">
+                        <p><span>À partir de 250 000 FCFA</span></p>
+                    </div>
+                    <p class="fst-italic">
+                        Célébrez votre union dans la tradition malienne
+                    </p>
+                    <ul>
+                        <li><i class="bi bi-check2-circle"></i> <span>Décoration traditionnelle bogolan</span></li>
+                        <li><i class="bi bi-check2-circle"></i> <span>Musique live avec balafon et djembé</span></li>
+                        <li><i class="bi bi-check2-circle"></i> <span>Menu de fête traditionnel</span></li>
+                    </ul>
+                    </div>
                 </div>
-                <div class="col-lg-6 pt-4 pt-lg-0 content">
-                  <h3>Birthday Parties</h3>
-                  <div class="price">
-                    <p><span>$189</span></p>
-                  </div>
-                  <p class="fst-italic">
-                    Celebrate unforgettable birthdays with fun-filled packages tailored for all ages.
-                  </p>
-                  <ul>
-                    <li><i class="bi bi-check2-circle"></i> <span>Custom cake and decoration options.</span></li>
-                    <li><i class="bi bi-check2-circle"></i> <span>Entertainment for kids and adults.</span></li>
-                    <li><i class="bi bi-check2-circle"></i> <span>Flexible indoor and outdoor setups.</span></li>
-                  </ul>
-                  <p>
-                    Make memories that last a lifetime with our all-inclusive birthday party services.
-                  </p>
-                </div>
-              </div>
-            </div><!-- End Slider item -->
+                </div><!-- End Slider item -->
 
             <!-- Private Parties -->
             <div class="swiper-slide">
@@ -540,7 +536,10 @@
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-        <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form">
+    <!-- Reste du formulaire inchangé -->
+
+<form action="{{ route('reservations.store') }}" method="post" class="php-email-form">
+    @csrf
           <div class="row gy-4">
             <div class="col-lg-4 col-md-6">
               <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required="">
@@ -788,7 +787,7 @@
 
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
             <div class="member">
-              <img src="assets/img/chefs/chefs-1.jpg" class="img-fluid" alt="">
+              <img src="assets/img/chefs/chefs-4.jpeg" class="img-fluid" alt="">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4>Walter White</h4>
@@ -806,7 +805,7 @@
 
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
             <div class="member">
-              <img src="assets/img/chefs/chefs-2.jpg" class="img-fluid" alt="">
+              <img src="assets/img/chefs/chefs-5.jpeg" class="img-fluid" alt="">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4>Sarah Jhonson</h4>
@@ -824,7 +823,7 @@
 
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
             <div class="member">
-              <img src="assets/img/chefs/chefs-3.jpg" class="img-fluid" alt="">
+              <img src="assets/img/chefs/chefs-6.jpeg" class="img-fluid" alt="">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4>William Anderson</h4>
@@ -899,32 +898,26 @@
           </div>
 
           <div class="col-lg-8">
-            <form action="index.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
-              <div class="row gy-4">
-
-                <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
-                </div>
-
-                <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
-                </div>
-
-                <div class="col-md-12 text-center">
-
-                  <button type="submit">Send Message</button>
-                </div>
-
-              </div>
-            </form>
+          <form action="{{ route('contact.submit') }}" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+    @csrf
+    <div class="row gy-4">
+        <div class="col-md-6">
+            <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+        </div>
+        <div class="col-md-6">
+            <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+        </div>
+        <div class="col-md-12">
+            <input type="text" class="form-control" name="subject" placeholder="Subject" required>
+        </div>
+        <div class="col-md-12">
+            <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+        </div>
+        <div class="col-md-12 text-center">
+            <button type="submit">Send Message</button>
+        </div>
+    </div>
+</form>
           </div><!-- End Contact Form -->
 
         </div>

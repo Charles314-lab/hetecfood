@@ -1,54 +1,94 @@
 @extends('adminlte::page')
 
-@section('title', 'Commandes')
+@section('title', 'Gestion des commandes')
 
 @section('content_header')
-    <h1>Liste des Commandes</h1>
-@endsection
+    <h1>Liste des commandes</h1>
+@stop
 
 @section('content')
+    {{-- Section Filtres --}}
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Filtrer les commandes</h5>
+        </div>
+        <div class="card-body">
+            <form action="{{ route('commandes.index') }}" method="GET" class="row g-3">
+                {{-- Filtres comme montré ci-dessus --}}
+                ...
+            </form>
+        </div>
+    </div>
 
-<a href="{{ route('commandes.create') }}" class="btn btn-primary mb-3">Nouvelle commande</a>
+    {{-- Tableau des commandes --}}
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Client</th>
+                            <th>Plat</th>
+                            <th>Quantité</th>
+                            <th>Prix total</th>
+                            <th>Statut</th>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($commandes as $commande)
+                        <tr>
+                            <td>{{ $commande->id }}</td>
+                            <td>
+                                @if($commande->client_id)
+                                    {{ $commande->client->nom ?? 'Client supprimé' }}
+                                @else
+                                    {{ $commande->customer_name }} (Public)
+                                @endif
+                                <br>
+                                <small>{{ $commande->client_phone }}</small>
+                            </td>
+                            <td>{{ $commande->plat->nom ?? 'Plat supprimé' }}</td>
+                            <td>{{ $commande->quantite }}</td>
+                            <td>{{ number_format($commande->prix_total, 0, ',', ' ') }} FCFA</td>
+                            <td>
+                                <span class="badge bg-{{ $commande->statut == 'livrée' ? 'success' : ($commande->statut == 'annulée' ? 'danger' : 'warning') }}">
+                                    {{ ucfirst($commande->statut) }}
+                                </span>
+                            </td>
+                            <td>{{ $commande->date_commande->format('d/m/Y H:i') }}</td>
+                            <td>
+                                <span class="badge bg-{{ $commande->is_public ? 'info' : 'primary' }}">
+                                    {{ $commande->is_public ? 'Publique' : 'Admin' }}
+                                </span>
+                            </td>
+                            <td>
+                                <a href="{{ route('commandes.edit', $commande->id) }}" class="btn btn-sm btn-primary">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
 
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
+            {{-- Pagination --}}
+            <div class="mt-3">
+                {{ $commandes->links() }}
+            </div>
+        </div>
+    </div>
+@stop
 
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Client</th>
-                <th>Plat</th>
-                <th>Quantité</th>
-                <th>Prix Total</th>
-                <th>Statut</th>
-                <th>Livreur</th>
-                <th>Date</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($commandes as $commande)
-                <tr>
-                    <td>{{ $commande->id }}</td>
-                    <td>{{ $commande->client->nom }} {{ $commande->client->prenom }}</td>
-                    <td>{{ $commande->plat->nom }}</td>
-                    <td>{{ $commande->quantite }}</td>
-                    <td>{{ $commande->prix_total }} FCFA</td>
-                    <td>{{ ucfirst($commande->statut) }}</td>
-                    <td>{{ $commande->livreur->nom ?? '-' }}</td>
-                    <td>{{ $commande->date_commande }}</td>
-                    <td>
-                        <a href="{{ route('commandes.edit', $commande->id) }}" class="btn btn-sm btn-warning">Modifier</a>
-                        <form action="{{ route('commandes.destroy', $commande->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-sm btn-danger" onclick="return confirm('Supprimer cette commande ?')">Supprimer</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-@endsection
+@section('css')
+    <style>
+        .badge {
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+    </style>
+@stop

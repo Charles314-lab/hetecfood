@@ -11,7 +11,7 @@ class PlatController extends Controller
 {
     public function index()
     {
-        $plats = Plat::with(['menu', 'categorie'])->get();
+         $plats = Plat::with(['menu', 'categorie'])->withTrashed()->get();
         return view('admin.plats.index', compact('plats'));
     }
 
@@ -22,23 +22,32 @@ class PlatController extends Controller
         return view('admin.plats.create', compact('menus', 'categories'));
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'nom' => 'required|string|max:50',
-            'origine' => 'nullable|string|max:50',
-            'tps_cuisson' => 'nullable|string|max:10',
-            'prix' => 'required|numeric',
-            'image' => 'nullable|string',
-            'menu_id' => 'nullable|integer|exists:menus,id',
-            'categorie_id' => 'nullable|integer|exists:categories,id',
-        ]);
+   // Dans PlatController.php, modifiez la méthode store:
 
-        Plat::create($request->all());
+public function store(Request $request)
+{
+    $request->validate([
+        'nom' => 'required|string|max:50',
+        'origine' => 'nullable|string|max:50',
+        'tps_cuisson' => 'nullable|string|max:10',
+        'prix' => 'required|numeric',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'menu_id' => 'nullable|integer|exists:menus,id',
+        'categorie_id' => 'required|integer|exists:categories,id', // Changé en required
+    ]);
 
-        return redirect()->route('plats.index')->with('success', 'Plat ajouté avec succès');
+    $plat = new Plat($request->except('image'));
+
+    if ($request->hasFile('image')) {
+        $imageName = time().'.'.$request->image->extension();
+        $request->image->move(public_path('assets/img/plats'), $imageName);
+        $plat->image = $imageName;
     }
 
+    $plat->save();
+
+    return redirect()->route('plats.index')->with('success', 'Plat ajouté avec succès');
+}
     public function edit(Plat $plat)
     {
         $menus = Menu::all();

@@ -20,19 +20,33 @@ class ReservationController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'nom' => 'required|string|max:100',
+        // Validation adaptative pour compatibilité front/back
+        $validated = $request->validate([
+            'nom' => 'nullable|string|max:100',
+            'name' => 'nullable|string|max:100',
             'email' => 'required|email|max:100',
-            'telephone' => 'required|string|max:20',
-            'nb_personnes' => 'nullable|integer',
-            'reservation_date' => 'required|date',
-            'reservation_time' => 'required',
+            'telephone' => 'nullable|string|max:20',
+            'phone' => 'nullable|string|max:20',
+            'nb_personnes' => 'nullable|integer|min:1',
+            'people' => 'nullable|integer|min:1',
+            'reservation_date' => 'nullable|date',
+            'date' => 'nullable|date',
+            'reservation_time' => 'nullable',
+            'time' => 'nullable',
             'message' => 'nullable|string',
         ]);
 
-        Reservation::create($request->all());
+        Reservation::create([
+            'nom' => $request->nom ?? $request->name,
+            'email' => $request->email,
+            'telephone' => $request->telephone ?? $request->phone,
+            'reservation_date' => $request->reservation_date ?? $request->date,
+            'reservation_time' => $request->reservation_time ?? $request->time,
+            'nb_personnes' => $request->nb_personnes ?? $request->people,
+            'message' => $request->message,
+        ]);
 
-        return redirect()->route('reservations.index')->with('success', 'Réservation ajoutée avec succès.');
+        return redirect()->route('reservations.index')->with('success', 'Réservation enregistrée avec succès.');
     }
 
     public function edit(Reservation $reservation)
